@@ -1,107 +1,195 @@
-# Deffo — DeepFake Detection for Digital Media
+# DEFFO — DeepFake Video Detection using Xception CNN + BiLSTM
 
-A production-level deepfake video detection system using **Xception CNN + Bidirectional LSTM** architecture, achieving **83.93% ROC-AUC** and **100% fake recall** on the Google DeepFakeDetection dataset.
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange?logo=tensorflow)
+![Flask](https://img.shields.io/badge/Flask-Web_App-black?logo=flask)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer_Vision-green?logo=opencv)
 
----
+An AI-powered DeepFake video detection system that combines **MTCNN face detection**, **Xception CNN feature extraction**, and **Bidirectional LSTM (BiLSTM)** temporal modeling to classify videos as **Real** or **Fake**.
 
-## Results
-
-| Metric | Score |
-|--------|-------|
-| ROC-AUC | 83.93% |
-| Fake Recall | 100% |
-| Dataset | Google DFD (Kaggle) |
-| Loss Function | Focal Loss (γ = 2.0) |
+The application provides a modern Flask-based web interface that allows users to upload videos, analyze them, and receive authenticity predictions with confidence scores.
 
 ---
 
-## Architecture
+# Web Application
 
+## Upload Interface
+
+![Upload Interface](images/upload-interface.png)
+
+---
+
+## Prediction Result
+
+![Prediction Result](images/prediction-result.png)
+
+---
+
+# Key Features
+
+- Modern responsive Flask web application
+- Drag-and-drop video upload interface
+- Automatic face detection using MTCNN
+- Spatial feature extraction using Xception CNN
+- Temporal sequence learning using Bidirectional LSTM
+- Confidence score generation
+- DeepFake authenticity prediction
+- Video preview before analysis
+- Responsive dark-themed user interface
+
+---
+
+# Model Performance
+
+| Metric | Value |
+|---------|-------|
+| ROC-AUC | **83.93%** |
+| Accuracy | **67.1%** |
+| Fake Recall | **100%** |
+| Frames Sampled | **50 Frames / Video** |
+| Dataset | Google DeepFakeDetection (Kaggle) |
+
+---
+
+# System Architecture
+
+```text
+                Input Video
+                     │
+                     ▼
+        Uniform Frame Sampling (50)
+                     │
+                     ▼
+          MTCNN Face Detection
+                     │
+                     ▼
+      Xception CNN Feature Extraction
+             (2048-dimensional)
+                     │
+                     ▼
+      Bidirectional LSTM (BiLSTM)
+                     │
+                     ▼
+            Dense Classification
+                     │
+                     ▼
+          Real / Fake Prediction
 ```
-Video → 50 Uniform Frames → MTCNN Face Crop
-      → Xception CNN (ImageNet Pretrained, 2048-d features)
-      → Bidirectional LSTM (128 units)
-      → Fake / Real + Confidence Score
-```
 
 ---
 
-## Tech Stack
+# Technology Stack
 
-| Component | Technology |
+| Category | Technology |
 |-----------|------------|
-| Deep Learning Framework | TensorFlow / Keras |
-| CNN Backbone | Xception (ImageNet pretrained) |
+| Programming Language | Python |
+| Deep Learning | TensorFlow, Keras |
+| CNN Backbone | Xception (ImageNet Pretrained) |
 | Sequence Model | Bidirectional LSTM |
 | Face Detection | MTCNN |
-| Augmentation | Albumentations |
-| Deployment | Flask REST API |
+| Computer Vision | OpenCV |
+| Backend | Flask |
+| Data Processing | NumPy, Pandas |
 
 ---
 
-## Model Details
+# Project Structure
 
-- **Backbone:** Xception pretrained on ImageNet (transfer learning)
-- **Sequence Model:** Bidirectional LSTM (128 units) for temporal modeling
-- **Loss:** Focal Loss (γ=2.0) to handle class imbalance
-- **Frames:** 50 uniform samples per video
-- **Face Detection:** MTCNN for precise facial crop per frame
-- **Dataset:** Google DeepFakeDetection (DFD) — Kaggle
-
----
-
-## Project Structure
-
-```
-deffo/
-├── app.py                 # Flask server & REST API
-├── deepfake_train.py      # End-to-end training pipeline
-├── requirements.txt       # Dependencies
+```text
+DeepFake-Video-Detection/
+│
+├── app.py
+├── deepfake_train.py
+├── requirements.txt
 ├── templates/
-│   └── index.html         # Frontend UI
+├── static/
+├── images/
 └── README.md
 ```
 
 ---
 
-## Setup
+# Installation
 
-### 1. Clone repo
+## Clone the Repository
+
 ```bash
-git clone https://github.com/anantbarjatya/deepfake-detector--DEFFO.git
-cd deepfake-detector--DEFFO
+git clone https://github.com/Placidbala/DeepFake-Video-Detection.git
+
+cd DeepFake-Video-Detection
 ```
 
-### 2. Install dependencies
+## Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Add dataset
-```
-dataset/
-  real/   ← original videos
-  fake/   ← deepfake videos
-```
+## Run the Application
 
-### 4. Train model
 ```bash
-python3 deepfake_train.py
+python app.py
 ```
 
-### 5. Run server
-```bash
-python3 app.py
-```
+Open your browser and visit:
 
-### 6. Open browser
 ```
-http://127.0.0.1:5001
+http://127.0.0.1:5000
 ```
 
 ---
 
-## Author
+# Workflow
 
-**Anant Barjatya**
-[GitHub](https://github.com/anantbarjatya) · [LinkedIn](https://www.linkedin.com/in/anant-barjatya-1340b627b)
+1. Upload a video through the web application.
+2. Extract 50 uniformly sampled frames.
+3. Detect faces using MTCNN.
+4. Extract spatial features using Xception CNN.
+5. Capture temporal information using Bidirectional LSTM.
+6. Classify the video as **Real** or **Fake**.
+7. Display the prediction with a confidence score.
+
+---
+
+# Contributors
+
+## Bala Subrahmanyam
+
+- Co-developed the DeepFake detection system.
+- Contributed to model development, experimentation, evaluation, documentation, web application integration, testing, and overall system implementation.
+
+**GitHub:** https://github.com/Placidbala
+
+**LinkedIn:** https://www.linkedin.com/in/bala-subrahmanyam-5b9643219/
+
+---
+
+## Anant Barjatya
+
+- Co-developed the DeepFake detection system.
+- Contributed to model development, experimentation, evaluation, documentation, web application integration, testing, and overall system implementation.
+
+**GitHub:** https://github.com/anantbarjatya
+
+---
+
+# Collaboration
+
+This project was collaboratively developed by **Bala Subrahmanyam** and **Anant Barjatya** as part of an academic deep learning project. Both contributors actively participated in the design, implementation, experimentation, testing, and refinement of the complete system.
+
+---
+
+# Future Scope
+
+- Improve generalization using larger DeepFake datasets.
+- Integrate Vision Transformers (ViT) for feature extraction.
+- Explore Transformer-based temporal modeling.
+- Support real-time webcam DeepFake detection.
+- Deploy the application using Docker and cloud platforms.
+- Optimize inference speed for production deployment.
+
+---
+
+# Disclaimer
+
+This project was developed for academic, educational, and research purposes to explore deep learning techniques for multimedia forensics and DeepFake detection.
