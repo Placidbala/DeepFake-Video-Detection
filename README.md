@@ -13,8 +13,6 @@ The application provides a modern Flask-based web interface that allows users to
 
 # Web Application
 
-# Web Application
-
 <p align="center">
   <img src="images/upload-interface.png" width="48%">
   <img src="images/prediction-result.png" width="48%">
