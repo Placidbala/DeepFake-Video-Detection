@@ -13,17 +13,12 @@ The application provides a modern Flask-based web interface that allows users to
 
 # Web Application
 
-## Upload Interface
+# Web Application
 
-![Upload Interface](images/upload-interface.png)
-
----
-
-## Prediction Result
-
-![Prediction Result](images/prediction-result.png)
-
----
+<p align="center">
+  <img src="images/upload-interface.png" width="48%">
+  <img src="images/prediction-result.png" width="48%">
+</p>
 
 # Key Features
 
